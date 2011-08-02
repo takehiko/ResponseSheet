@@ -1,0 +1,48 @@
+%#!platex --kanji=utf8 class
+\documentclass[12pt,a4paper]{jsarticle}
+
+\pagestyle{empty}
+\unitlength=1mm
+\def\sheettitle{情報セキュリティ 授業メモ}
+%\def\sheettitle{情報処理II 小テスト解答用紙}
+\def\studentid{学生番号}
+%\def\studentid{学籍番号}
+\def\cutofflinetype{2} % 0:境界線なし，1:端にわずかの境界線，2:境界線を引く
+\def\drawcutoffline{%
+ \ifnum\cutofflinetype=1
+ \put(-85,0){\line(1,0){2}}\put(85,0){\line(-1,0){2}}
+ \else\ifnum\cutofflinetype=2
+ \put(-85,0){\line(1,0){170}}
+ \fi\fi}
+
+\begin{document}
+
+\newsavebox\toan
+\sbox{\toan}{\hbox{%
+ \begin{picture}(0,62)
+  \thinlines
+  \drawcutoffline
+  \put(0,53){\makebox(0,0){{\huge\textbf{\sheettitle}}}}
+  \put(-81,43){\makebox(0,0)[l]{{\large\textbf{\studentid:}}}}
+  \put(-19,43){\makebox(0,0)[l]{{\large\textbf{氏名:}}}}
+  \put(81,43){\makebox(0,0)[r]{{\large\textbf{実施日: \hspace{8mm}月 \hspace{8mm}日}}}}
+  \thicklines
+  \put(-82,40){\line(1,0){60}}
+  \put(-20,40){\line(1,0){57}}
+  \put(81,40){\line(-1,0){42}}
+  \thinlines
+  \put(-62,40){\framebox(40,8){}}
+  \multiput(-57,40)(5,0){7}{\line(0,1){8}}
+ \end{picture}
+}}
+
+\begin{center}
+ \begin{picture}(0,0)
+  \put(0,8){\makebox(0,0){\usebox{\toan}}}
+  \put(0,-54){\makebox(0,0){\usebox{\toan}}}
+  \put(0,-116){\makebox(0,0){\usebox{\toan}}}
+  \put(0,-178){\makebox(0,0){\usebox{\toan}}}
+ \end{picture}
+\end{center}
+
+\end{document}

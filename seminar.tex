@@ -1,0 +1,80 @@
+%#!platex --kanji=utf8 seminar
+\documentclass[12pt,a4paper]{jsarticle}
+
+\pagestyle{empty}
+\unitlength=1mm
+\newif\ifprintflipside
+\printflipsidetrue % 裏面印刷する
+%\printflipsidefalse % 裏面印刷しない
+\def\cutofflinetype{1} % 0:境界線なし，1:端にわずかの境界線，2:境界線を引く
+\def\drawcutoffline{%
+ \ifnum\cutofflinetype=1
+ \put(-85,0){\line(1,0){2}}\put(85,0){\line(-1,0){2}}
+ \else\ifnum\cutofflinetype=2
+ \put(-85,0){\line(1,0){170}}
+ \fi\fi}
+
+\begin{document}
+
+\newsavebox\toan
+\sbox{\toan}{\hbox{%
+ \begin{picture}(0,62)
+  \thinlines
+  \drawcutoffline
+  \put(0,53){\makebox(0,0){{\huge\textbf{メモ用紙}}}}
+  \put(-81,43){\makebox(0,0)[l]{{\large\textbf{学年・氏名:}}}}
+  \put(80,43){\makebox(0,0)[r]{{\large\textbf{日付: \hspace{15mm}年 \hspace{10mm}月 \hspace{10mm}日}}}}
+  \thicklines
+  \put(-82,40){\line(1,0){95}}
+  \put(81,40){\line(-1,0){64}}
+ \end{picture}
+}}
+
+\newsavebox\uraA
+\sbox{\uraA}{\hbox{%
+ \begin{picture}(0,62)
+  \thinlines
+  \drawcutoffline
+  \put(-81,6){\makebox(0,0)[l]{この用紙を受け取った人は，主に\underline{研究内容}に関するメモを書くよう努めてください．}}
+ \end{picture}
+}}
+
+\newsavebox\uraB
+\sbox{\uraB}{\hbox{%
+ \begin{picture}(0,62)
+  \thinlines
+  \drawcutoffline
+  \put(-81,6){\makebox(0,0)[l]{この用紙を受け取った人は，主に\underline{発表方法}(話し方など)に関するメモを書くよう努めてください．}}
+ \end{picture}
+}}
+
+\newsavebox\uraC
+\sbox{\uraC}{\hbox{%
+ \begin{picture}(0,62)
+  \thinlines
+  \drawcutoffline
+  \put(-81,6){\makebox(0,0)[l]{この用紙を受け取った人は，最低1回質問をし，その\underline{質問と回答}を書いてください．}}
+ \end{picture}
+}}
+
+\begin{center}
+ \begin{picture}(0,0)
+  \put(0,8){\makebox(0,0){\usebox{\toan}}}
+  \put(0,-54){\makebox(0,0){\usebox{\toan}}}
+  \put(0,-116){\makebox(0,0){\usebox{\toan}}}
+  \put(0,-178){\makebox(0,0){\usebox{\toan}}}
+ \end{picture}
+\end{center}
+\ifprintflipside
+\newpage
+\begin{center}
+ \begin{picture}(0,0)
+  \put(0,8){\makebox(0,0){\usebox{\uraA}}}
+  \put(0,-54){\makebox(0,0){\usebox{\uraB}}}
+  \put(0,-116){\makebox(0,0){\usebox{\uraC}}}
+  \put(0,-178){\makebox(0,0){\usebox{\uraA}}}
+ \end{picture}
+\end{center}
+\fi
+
+\end{document}
